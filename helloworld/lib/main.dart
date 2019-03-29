@@ -10,7 +10,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeWidget(),
+      home: Scaffold(
+        body: HomeWidget(),
+      ),
     );
   }
 }
@@ -19,30 +21,14 @@ class HomeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: BodyWidget(),
-    );
-  }
-}
-
-class BodyWidget extends StatefulWidget {
-  @override
-  _BodyWidgetState createState() => _BodyWidgetState();
-}
-
-class _BodyWidgetState extends State<BodyWidget> {
-
-  Color color = Colors.blue;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          color = (color == Colors.blue) ? Colors.red : Colors.blue;
-        });
-      },
-      child: Container(
-        color: color,
+      height: double.infinity,
+      width: double.infinity,
+      child: Stack(
+        alignment: Alignment.center,
+        children: <Widget>[
+          Container(height: 300, color:Colors.blue),
+          Container(height: 200, width: 200, color:Colors.red),
+        ],
       ),
     );
   }
