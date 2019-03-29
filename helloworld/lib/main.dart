@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
+        appBar: AppBar(),
         body: HomeWidget(),
       ),
     );
@@ -19,40 +20,91 @@ class MyApp extends StatelessWidget {
 }
 
 class HomeWidget extends StatelessWidget {
+
+  _onPressed() {
+    print('Clicado no item');
+  }
+
+  Widget _listTile() {
+    return ListTile(
+      leading: Icon(Icons.android),
+      title: Text('Item 1'),
+      subtitle: Text('subtitle 1'),
+      onTap: _onPressed,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       height: double.infinity,
       width: double.infinity,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+      // child: SingleChildScrollView(
+      //   child: Column(
+      //     children: <Widget>[
+      //       Padding(
+      //         padding: const EdgeInsets.all(8.0),
+      //         child: Container(height: 150, width: 150, color: Colors.purple)
+      //       ),
+      //       Padding(
+      //         padding: const EdgeInsets.all(8.0),
+      //         child: Container(height: 150, width: 150, color: Colors.purple)
+      //       ),
+      //       Padding(
+      //         padding: const EdgeInsets.all(8.0),
+      //         child: Container(height: 150, width: 150, color: Colors.purple)
+      //       ),
+      //       Padding(
+      //         padding: const EdgeInsets.all(8.0),
+      //         child: Container(height: 150, width: 150, color: Colors.purple)
+      //       ),
+      //       Padding(
+      //         padding: const EdgeInsets.all(8.0),
+      //         child: Container(height: 150, width: 150, color: Colors.purple)
+      //       ),
+      //       Padding(
+      //         padding: const EdgeInsets.all(8.0),
+      //         child: Container(height: 150, width: 150, color: Colors.purple)
+      //       ),
+      //       Padding(
+      //         padding: const EdgeInsets.all(8.0),
+      //         child: Container(height: 150, width: 150, color: Colors.purple)
+      //       ),
+      //     ],
+      //   ),
+      // ),
+
+      child: ListView(
+        scrollDirection: Axis.horizontal,
         children: <Widget>[
-          // RaisedButton(
-          //   onPressed: () {
-          //     print('Raisebutton');
-          //   },
-          //   color: Colors.blue,
-          //   child: Text('Click Button')
-          // ),
-
-          // RaisedButton.icon(
-          //   onPressed: () {
-          //     print('Raisebutton Android');
-          //   },
-          //   icon: Icon(Icons.android),
-          //   label:Text('Click button')
-          // )
-
-          CircleAvatar(
-            backgroundColor: Colors.blue,
-            child: Text('B')
+          // _listTile(),
+          IconButton(
+            icon: Icon(Icons.android), onPressed: () {},
           ),
-          SizedBox(height: 50),
-          CustomCircleAvatar(
-            backgroundColor: Colors.blue,
-            child: Text('B', style: TextStyle(color: Colors.white)),  
-          )
+          IconButton(
+            icon: Icon(Icons.android), onPressed: () {},
+          ),
+          IconButton(
+            icon: Icon(Icons.android), onPressed: () {},
+          ),
+          IconButton(
+            icon: Icon(Icons.android), onPressed: () {},
+          ),
+          IconButton(
+            icon: Icon(Icons.android), onPressed: () {},
+          ),
+          IconButton(
+            icon: Icon(Icons.android), onPressed: () {},
+          ),
+          IconButton(
+            icon: Icon(Icons.android), onPressed: () {},
+          ),
+          IconButton(
+            icon: Icon(Icons.android), onPressed: () {},
+          ),
+          IconButton(
+            icon: Icon(Icons.android), onPressed: () {},
+          ),
         ],
       ),
     );
