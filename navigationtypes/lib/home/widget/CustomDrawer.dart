@@ -1,37 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:navigationtypes/home/HomeController.dart';
 
 class CustomDrawer extends StatelessWidget {
 
-  final Function(int) onPressed;
-  final PageController pageController;
-
-  const CustomDrawer({Key key, this.onPressed, this.pageController}) : super(key: key);
-
+  const CustomDrawer({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
-        children: <Widget>[
-          ListTile(
-            selected: pageController.page.round() == 0,
-            title: Text('Início'),
-            onTap: (){ onPressed(0); },
-          ),
-          ListTile(
-            selected: pageController.page.round() == 1,
-            title: Text('Favoritos'),
-            onTap: (){ onPressed(1); },
-          ),
-          ListTile(
-            selected: pageController.page.round() == 2,
-            title: Text('Conta'),
-            onTap: (){ onPressed(2); },
-          ),
-          ListTile(
-            title: Text('Sair'),
-          ),
-        ],
+      child: StreamBuilder<int>(
+        initialData: 0,
+        stream: HomeController.of(context).drawerChangeOutput,
+        builder: (context, snapshot) {
+          return ListView(
+            children: <Widget>[
+              ListTile(
+                selected: snapshot.data == 0,
+                title: Text('Início'),
+                onTap: (){
+                  Scaffold.of(context).openEndDrawer();
+                  HomeController.of(context).drawerChangeInput.add(0);
+                },
+              ),
+              ListTile(
+                selected: snapshot.data == 1,
+                title: Text('Favoritos'),
+                onTap: (){
+                  Scaffold.of(context).openEndDrawer();
+                  HomeController.of(context).drawerChangeInput.add(1);
+                },
+              ),
+              ListTile(
+                selected: snapshot.data == 2,
+                title: Text('Conta'),
+                onTap: (){
+                  Scaffold.of(context).openEndDrawer();
+                  HomeController.of(context).drawerChangeInput.add(2);
+                },
+              ),
+              ListTile(
+                title: Text('Sair'),
+              ),
+            ],
+          );
+        }
       ),
     );
   }
